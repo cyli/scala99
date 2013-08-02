@@ -2,3 +2,5 @@ language: scala
 scala:
    - 2.10.1
 script: "sbt coveralls"
+notifications:
+  email: false
