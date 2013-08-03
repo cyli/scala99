@@ -89,4 +89,13 @@ class OneToTenSpec extends FlatSpec {
     assert(length(List(1)) == 1)
     assert(length(List(1, 1, 2, 3, 5, 8)) == 6)
   }
+
+  "reverse" should "reverse a list" in {
+    assert(reverse(List(1, 2, 3, 4)) == List(4, 3, 2, 1))
+  }
+
+  it should "return the same value for an empty or one element list" in {
+    assert(reverse(List()) == List())
+    assert(reverse(List(1)) == List(1))
+  }
 }

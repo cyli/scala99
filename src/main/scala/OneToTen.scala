@@ -94,4 +94,19 @@ object OneToTen {
 
     loop(0, x)
   }
+
+  /**
+   * P05: Reverse a list.
+   *
+   * {{{
+   * scala> reverse(List(1, 1, 2, 3, 5, 8))
+   * res0: List[Int] = List(8, 5, 3, 2, 1, 1)
+   * }}}
+   *
+   * @param x A list of items to reverse
+   * @return The same list, reversed
+   */
+  def reverse[T](x: List[T]): List[T] = {
+
+  }
 }
