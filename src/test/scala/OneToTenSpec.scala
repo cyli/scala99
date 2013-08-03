@@ -4,7 +4,7 @@ import OneToTen._
 
 class OneToTenSpec extends FlatSpec {
 
-  "last" should "return the last element of a list" in {
+  "last" should "succeed with the last element of a list" in {
     val multi = last(List(1, 2, 3, 4))
     val one = last(List(1))
 
@@ -14,7 +14,7 @@ class OneToTenSpec extends FlatSpec {
     assert(one.get == 1)
   }
 
-  it should "throw NoSuchElementException if the list is empty" in {
+  it should "fail with NoSuchElementException if the list is empty" in {
     val fail = last(List())
     assert(fail.isFailure)
 
@@ -23,7 +23,7 @@ class OneToTenSpec extends FlatSpec {
     }
   }
 
-  "penultimate" should "return the next to last element of a list" in {
+  "penultimate" should "succeed with the next to last element of a list" in {
     val multi = penultimate(List(1, 2, 3, 4))
     val two = penultimate(List(1, 2))
 
@@ -33,7 +33,7 @@ class OneToTenSpec extends FlatSpec {
     assert(two.get == 1)
   }
 
-  it should "throw NoSuchElementException if the list has < 2 items" in {
+  it should "fail with NoSuchElementException if the list has < 2 items" in {
     val empty = penultimate(List())
     assert(empty.isFailure)
 
@@ -46,6 +46,38 @@ class OneToTenSpec extends FlatSpec {
 
     intercept[NoSuchElementException] {
       one.get
+    }
+  }
+
+  "nth" should "succeed with the Kth element of a list" in {
+    val first = nth(0, List(1))
+    val third = nth(2, List(1, 2, 3, 4, 5))
+
+    assert(first.isSuccess)
+    assert(first.get == 1)
+    assert(third.isSuccess)
+    assert(third.get == 3)
+  }
+
+  it should "fail with NoSuchElementException if there is no Kth element" in {
+    val empty = nth(0, List())
+    assert(empty.isFailure)
+
+    intercept[NoSuchElementException] {
+      empty.get
+    }
+
+    val outOfBounds = nth(10, List(1))
+    assert(outOfBounds.isFailure)
+
+    intercept[NoSuchElementException] {
+      outOfBounds.get
+    }
+  }
+
+  it should "throw IllegalArgumentException if n is < 0" in {
+    intercept[IllegalArgumentException] {
+      nth(-5, List())
     }
   }
 }
