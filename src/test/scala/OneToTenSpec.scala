@@ -80,4 +80,13 @@ class OneToTenSpec extends FlatSpec {
       nth(-5, List())
     }
   }
+
+  "length" should "return the length of an empty list" in {
+    assert(length(List()) == 0)
+  }
+
+  it should "return the length of non-empty lists" in {
+    assert(length(List(1)) == 1)
+    assert(length(List(1, 1, 2, 3, 5, 8)) == 6)
+  }
 }

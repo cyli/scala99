@@ -69,4 +69,19 @@ object OneToTen {
       case _ => nth(n - 1, x.tail)
     }
   }
+
+  /**
+   * P04: Find the number of elements of a list.
+   *
+   * {{{
+   * scala> length(List(1, 1, 2, 3, 5, 8))
+   * res0: Int = 6
+   * }}}
+   *
+   * @param x A list of items
+   * @return The length of the list
+   */
+  def length[T](x: List[T]): Int = {
+
+  }
 }
