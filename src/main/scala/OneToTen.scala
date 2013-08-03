@@ -3,6 +3,7 @@
  */
 
 import scala.util.{Try, Success, Failure}
+import scala.annotation.tailrec
 
 object OneToTen {
 
@@ -83,5 +84,14 @@ object OneToTen {
    */
   def length[T](x: List[T]): Int = {
 
+    @tailrec
+    def loop(n: Int, xs: List[T]): Int = {
+      xs match {
+        case Nil => n
+        case _ => loop(n + 1, xs.tail)
+      }
+    }
+
+    loop(0, x)
   }
 }
