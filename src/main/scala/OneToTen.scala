@@ -60,6 +60,13 @@ object OneToTen {
    * @throws `IllegalArgumentException` if n < 0
    * @throws `NoSuchElementException` if there is no Kth element in the list
    */
-  def nth[T](n: Int, x: List[T]): Try[T] => {
+  def nth[T](n: Int, x: List[T]): Try[T] = {
+    require(n >= 0)
+
+    (n, x) match {
+      case (_, Nil) => Failure(new NoSuchElementException)
+      case (0, _) => Success(x.head)
+      case _ => nth(n - 1, x.tail)
+    }
   }
 }
