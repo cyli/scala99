@@ -19,6 +19,7 @@ object OneToTen {
    * @return The last element of the list `x`
    * @throws `NoSuchElementException if the list is empty
    */
+  @tailrec
   def last[T](x: List[T]): Try[T] = {
     x match {
       case Nil => Failure(new NoSuchElementException)
@@ -39,6 +40,7 @@ object OneToTen {
    * @return The penultimate element of the list `x`
    * @throws `NoSuchElementException` if the list is less than 2 elements long
    */
+  @tailrec
   def penultimate[T](x: List[T]): Try[T] = {
     x match {
       case Nil => Failure(new NoSuchElementException)
@@ -61,6 +63,7 @@ object OneToTen {
    * @throws `IllegalArgumentException` if n < 0
    * @throws `NoSuchElementException` if there is no Kth element in the list
    */
+  @tailrec
   def nth[T](n: Int, x: List[T]): Try[T] = {
     require(n >= 0)
 
@@ -107,6 +110,6 @@ object OneToTen {
    * @return The same list, reversed
    */
   def reverse[T](x: List[T]): List[T] = {
-
+    x.foldLeft(List[T]())((collected, elem) => elem :: collected)
   }
 }
