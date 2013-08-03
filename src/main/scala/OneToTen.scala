@@ -39,7 +39,10 @@ object OneToTen {
    * @throws `NoSuchElementException` if the list is less than 2 elements long
    */
   def penultimate[T](x: List[T]): Try[T] = {
-
+    x match {
+      case Nil => Failure(new NoSuchElementException)
+      case car :: _ :: Nil => Success(car)
+      case _ :: cdr => penultimate(cdr)
+    }
   }
-
 }
